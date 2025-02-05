@@ -16,7 +16,7 @@ to pull from s3 if you want to test locally**
    # make sure you are in the jupyter-notebook-<<blank>> folder
    mkdir data
    cd data
-   aws s3 cp s3://<<blank>>-notebook-bucket/data . --recursive
+   aws s3 cp s3://rgcam-notebook-bucket/data . --recursive
 
    ```
 

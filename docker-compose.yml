@@ -2,13 +2,14 @@
 # for testing.
 services:
   notebook:
-    container_name: <<blank>>-notebook
+    container_name: rgcam-notebook
     build:
       context: .
       dockerfile: Dockerfile
-    image: ghcr.io/msd-live/jupyter/<<blank>>-notebook:latest
+    image: ghcr.io/msd-live/jupyter/rgcam-notebook:latest
     ports:
       - "8888:8888"
     volumes:
       - ./data:/home/jovyan/data
+      - ./data:/data
       - ./notebooks:/home/jovyan/notebooks
