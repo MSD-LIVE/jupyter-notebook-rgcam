@@ -1,5 +1,5 @@
 # FROM ghcr.io/msd-live/jupyter/r-notebook:dev
-FROM ghcr.io/msd-live/jupyter/python-notebook:dev
+FROM ghcr.io/msd-live/jupyter/r-notebook:dev
 
 # Install Java
 RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y wget openjdk-11-jre-headless unzip
@@ -17,10 +17,12 @@ RUN cd / && \
     mv rgcam-1.2.0/inst/ModelInterface/ModelInterface.jar /basex/lib/ && \
     rm -r v1.2.0.zip rgcam-1.2.0
 
-# Change the /basex/data folder to be symlinked to /bucket/data 
-# RUN rmdir /basex/data && ln -s /data /basex/data
-RUN rmdir /basex/data 
-COPY basexdb /basex/data
+# Change the /basex/data folder 
+
+# make a data/basexdb folder and copy everything currently in s3's data folder into it.
+# check into THIS repo that data folder
+# in Dockerfile 
+COPY data/basexdb/ /basex/data/
 
 # RUN chmod 755 /basex/BaseX.jar
 RUN chmod -R 777 /basex
@@ -30,16 +32,14 @@ RUN chmod -R 777 /basex
 # Set the jupyter config file
 # the /home/jovyan/.jupyter config location tells jupyter this is a user-specific config
 # setting that could overwrite global settings
-COPY jupyter_server_config.py /home/jovyan/.jupyter/jupyter_server_config.py
+# COPY jupyter_server_config.py /home/jovyan/.jupyter/jupyter_server_config.py
 
 # Add our custom .basex config file
 COPY .basex /basex/.basex
 
-RUN pip install jupyter-server-proxy
+# RUN pip install jupyter-server-proxy
 
-# we don't yet know if this will be necessary, basex might start up quickly enough (it sure fails quickly)
-# install the msdlive plugin in order for the msdlive labs extension to discover it via entry points and 
-# start up the basex server as soon as the notebook loads instead of waiting for basex to start
+# TODO implement copying of /data to user home dir instead of symlinking
 # COPY msdlive_hooks /srv/jupyter/extensions/msdlive_hooks
 # RUN pip install /srv/jupyter/extensions/msdlive_hooks
 

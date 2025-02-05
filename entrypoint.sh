@@ -19,5 +19,4 @@ java -Xms6g -Xmx7g  -cp /basex/lib/*:/basex/BaseX.jar \
 
 cd /home/${NB_USER}
 echo "Starting Jupyter Notebook..."
-
 exec start.sh start-notebook.py
