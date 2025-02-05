@@ -3,3 +3,6 @@ notebooks/*
 
 # Except for .ipynb files
 !notebooks/*.ipynb
+
+# Ignore all files in the data folder
+data/*
