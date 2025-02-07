@@ -31,3 +31,18 @@ Notebook repos need to set these secrets (use *_uploader user to generate new ac
 AWS_ACCESS_KEY_ID
 AWS_SECRET_ACCESS_KEY
 AWS_S3_BUCKET
+
+
+
+## Basex notes 
+from a cell in a notebook this url to the database responded to wget: http://localhost:1984/rest
+so we know it's running and accessible to the notebook. 
+
+## currrent status
+We don't yet have the Dockerfiles that installs gcam and configures basex so we can't
+test the notebooks yet.
+
+will need to change these lines in notebooks to point to localhost instead so remove these:
+host <- gsub(':.*$', '', gsub('http://', '', Sys.getenv('JUPYTERHUB_API_URL')))
+
+and just use as host 'locahost:1984'
