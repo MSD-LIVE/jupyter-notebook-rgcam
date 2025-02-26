@@ -22,6 +22,9 @@ RUN chmod -R 777 /basex
 # Add our custom .basex config file
 COPY .basex /basex/.basex
 
+# copy the notebooks to the container
+COPY notebooks /home/jovyan/notebooks
+
 # install the msdlive plugin in order for the msdlive labs extension to discover it via entry points and 
 # copy the files to /basex/data dir
 COPY msdlive_hooks /srv/jupyter/extensions/msdlive_hooks

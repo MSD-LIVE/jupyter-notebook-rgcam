@@ -26,12 +26,6 @@ to pull from s3 if you want to test locally**
    docker compose up
    ```
 
-Notebook repos need to set these secrets (use *_uploader user to generate new access keys):  
-
-AWS_ACCESS_KEY_ID
-AWS_SECRET_ACCESS_KEY
-AWS_S3_BUCKET
-
 
 
 ## Basex notes 
@@ -46,3 +40,7 @@ will need to change these lines in notebooks to point to localhost instead so re
 host <- gsub(':.*$', '', gsub('http://', '', Sys.getenv('JUPYTERHUB_API_URL')))
 
 and just use as host 'locahost:1984'
+
+
+## MSD-LIVE customization via custom entry point:
+starts up basex database and then starts notebook. 
