@@ -1,5 +1,4 @@
-FROM ghcr.io/msd-live/jupyter/r-notebook:dev
-# FROM ghcr.io/msd-live/jupyter/python-notebook:dev
+FROM ghcr.io/msd-live/jupyter/r-notebook:latest
 
 # Install Java
 RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y wget openjdk-11-jre-headless unzip
