@@ -21,6 +21,18 @@ RUN chmod -R 777 /basex
 # Add our custom .basex config file
 COPY .basex /basex/.basex
 
+RUN R -e "install.packages('remotes', repos='https://cloud.r-project.org')"
+RUN R -e "remotes::install_github('JGCRI/rgcam', build_vignettes=TRUE)"
+RUN R -e "install.packages('devtools', repos='https://cloud.r-project.org')"
+RUN conda install -c conda-forge imagemagick
+RUN R -e "install.packages('magick', repos='https://cloud.r-project.org', lib = .libPaths()[1])"
+RUN R -e "remotes::install_github('JGCRI/jgcricolors', dependencies=TRUE)"
+RUN R -e "remotes::install_github('JGCRI/rchart', dependencies=TRUE)"
+RUN conda install udunits libgdal gdal geos proj
+RUN conda install r-terra r-sf
+RUN apt-get update && apt-get install -y g++
+RUN R -e "remotes::install_github('JGCRI/rmap', dependencies=TRUE)"
+
 # copy the notebooks to the container
 COPY notebooks /home/jovyan/notebooks
 
