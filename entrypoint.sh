@@ -8,7 +8,7 @@ set -e
 # IMPORTANT:  If you increase the container memory, you must also increase the
 # -Xms and -Xmx JVM settings to utilize the additional memory
 java -Xms6g -Xmx7g  -cp /basex/lib/*:/basex/BaseX.jar \
-    -Dorg.basex.DBPATH=/basex/data \
+    -Dorg.basex.DBPATH=/data \
     -Dorg.basex.ATTRINDEX=false \
     -Dorg.basex.FTINDEX=false \
     -Dorg.basex.UPDINDEX=false \
