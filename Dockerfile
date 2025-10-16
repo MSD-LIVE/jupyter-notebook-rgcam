@@ -1,4 +1,4 @@
-FROM ghcr.io/msd-live/jupyter/datascience-notebook:latest
+FROM ghcr.io/msd-live/jupyter/datascience-notebook:dev
 
 # Install Java
 RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y wget openjdk-11-jre-headless unzip
