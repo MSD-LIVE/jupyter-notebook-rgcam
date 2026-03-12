@@ -22,7 +22,9 @@ RUN chmod -R 777 /basex
 COPY .basex /basex/.basex
 
 RUN R -e "install.packages('remotes', repos='https://cloud.r-project.org')"
-RUN R -e "remotes::install_github('JGCRI/rgcam', build_vignettes=TRUE)"
+# Pin to v1.2.0 (latest tag, consistent with ModelInterface jar above) and skip
+# vignette build: rgcam-usecases.Rmd uses group_by_() which is defunct in dplyr 1.0+
+RUN R -e "remotes::install_github('JGCRI/rgcam', ref='v1.2.0', build_vignettes=FALSE)"
 RUN R -e "install.packages('devtools', repos='https://cloud.r-project.org')"
 RUN conda install -c conda-forge imagemagick
 RUN R -e "install.packages('magick', repos='https://cloud.r-project.org', lib = .libPaths()[1])"
