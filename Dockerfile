@@ -28,11 +28,11 @@ RUN R -e "remotes::install_github('JGCRI/rgcam', ref='v1.2.0', build_vignettes=F
 RUN R -e "install.packages('devtools', repos='https://cloud.r-project.org')"
 RUN conda install -c conda-forge imagemagick
 RUN R -e "install.packages('magick', repos='https://cloud.r-project.org', lib = .libPaths()[1])"
-RUN R -e "remotes::install_github('JGCRI/jgcricolors', dependencies=TRUE)"
-RUN R -e "remotes::install_github('JGCRI/rchart', dependencies=TRUE)"
 RUN conda install udunits libgdal gdal geos proj
 RUN conda install r-terra r-sf
 RUN apt-get update && apt-get install -y g++
+RUN R -e "remotes::install_github('JGCRI/jgcricolors', dependencies=TRUE)"
+RUN R -e "remotes::install_github('JGCRI/rchart', dependencies=TRUE)"
 RUN R -e "remotes::install_github('JGCRI/rmap', dependencies=TRUE)"
 
 # copy the notebooks to the container
